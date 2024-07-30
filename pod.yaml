@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: service-a
+  labels:
+    app: service-a
+spec:
+  containers:
+    - name: service-a
+      image: doncool340/mirrord-demo:service-a
+      ports:
+        - containerPort: 3000
+      env:
+        - name: SERVICE_B_URL
+          value: http://service-b
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: service-b
+  labels:
+    app: service-b
+spec:
+  containers:
+    - name: service-b
+      image: doncool340/mirrord-demo:service-b
+      ports:
+        - containerPort: 3000
+      env:
+        - name: SERVICE_C_URL
+          value: http://service-c
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: service-c
+  labels:
+    app: service-c
+spec:
+  containers:
+    - name: service-c
+      image: doncool340/mirrord-demo:service-c
+      ports:
+        - containerPort: 3000
